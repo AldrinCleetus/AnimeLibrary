@@ -20,7 +20,7 @@
             
             <nav class="navbar navbar-dark bg-dark vh-25">
               <div class="container-fluid py-3">
-                <a class="navbar-brand px-2" href="#">
+                <a class="navbar-brand px-2" href="/">
                   Anime Library!
                 </a>
                 <a class="btn btn-primary" href="#">GitHub</a>
@@ -32,7 +32,7 @@
                 <div class="container d-flex py-5 align-content-stretch flex-wrap justify-content-between">
 
                     <% animeData.forEach(anime =>{ %>
-                        <img src=<%= anime.cover %> class="m-4 rounded img-fluid" width="250" height="300">
+                        <img src=<%= anime.image_url %> class="m-4 rounded img-fluid" width="250" height="300">
                     <% })%>
                 </div>
             </div>
