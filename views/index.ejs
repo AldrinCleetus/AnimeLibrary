@@ -31,26 +31,26 @@
             <!-- First Section/Landing Page -->
             <div class="jumbotron h-75 m-0 text-white text-center p-2 d-flex align-items-center bg-transparent" id="landingpage">
                 <div class="container-fluid w-100">
-                    <div class="container">
-                    	<form>
-	                    	<div class="form-group h2">
-								<input required 
-								type="input" 
-								name="userName" 
-								id="userName" 
-								placeholder="Username here..." 
-								class="form-control rounded rounded-pill p-4 shadow-sm text-dark">
-							</div>
-	                    </form>
-                    </div>
-                    <div class="container my-3 p-2">
-                    	<a class="btn btn-outline-success btn-lg m-2" href="#">
-                         Download &#11191
-	                    </a>
-	                    <a class="btn btn-outline-success btn-lg m-2" href="/shelf">
-	                        View Shelf &#11187
-	                    </a>
-                    </div>
+	                <form method="POST" action="/shelf" autocomplete="off">
+	                    <div class="container">
+		                    	<div class="form-group h2">
+									<input required 
+									type="input" 
+									name="userName" 
+									id="userName" 
+									placeholder="Username here..." 
+									class="form-control rounded rounded-pill p-4 shadow-sm text-dark">
+								</div>
+	                    </div>
+	                    <div class="container my-3 p-2">
+	                    	<a class="btn btn-outline-success btn-lg m-2" href="/">
+	                         Download &#11191
+		                    </a>
+		                    <button class="btn btn-outline-success btn-lg m-2" type="submit">
+		                        View Shelf &#11187
+		                    </button>
+	                    </div>
+	                </form>
                 </div>
             </div>
         </header>

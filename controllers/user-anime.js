@@ -14,13 +14,17 @@ module.exports =
 		{
 			const jikanResponse = await axios.get(jikanApi+username+animeParam)
 			console.log("Data retrived!")
-			//console.log(jikanResponse.data)
-			return jikanResponse.data
+			console.log(jikanResponse.status)
+
+			return [jikanResponse.status,jikanResponse.data]
 		}
 		catch(e)
 		{
 			console.log(e.message)
-			return (e.message)
+
+			return [e.response.status,null]
+			
+
 		}
 	}
 }
