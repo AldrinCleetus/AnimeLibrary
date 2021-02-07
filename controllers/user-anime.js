@@ -4,7 +4,8 @@ const axios = require('axios');
 const jikanApi = "http://api.jikan.moe/v3/user/"
 const animeParam = "/animelist/all"
 
-let simpledb = []
+// Temporary Cache
+let cache = []
 
 module.exports = 
 {
@@ -12,7 +13,7 @@ module.exports =
 	{
 		console.log("Requesting from "+ jikanApi+username+animeParam)
 
-		console.log(simpledb)
+		console.log(cache)
 
 		let found = 
 		{
@@ -21,20 +22,24 @@ module.exports =
 		}
 
 		// Check if the data is already cached
-		simpledb.every( (cachedData,index) =>
+		cache.every( (cachedData,index) =>
 		{
-			if (cachedData.user === username) 
+			if (cachedData.user === username.toString()) 
 			{
 				console.log("Data cached! Sending cached data!")
+
 				found.status = true
 				found.dataID = index
+
+				console.log(found)
+
 				return false
 			}
 		})
 
 		if (found.status)
 		{
-			const cachedDataFound = simpledb[found.dataID].data
+			const cachedDataFound = cache[found.dataID].data
 
 			return [cachedDataFound.status,cachedDataFound.data]
 		}
@@ -47,12 +52,12 @@ module.exports =
 				console.log("Data retrived!")
 				console.log(jikanResponse.status)
 
-				simpledb.push({
+				cache.push({
 					user: username,
 					data: jikanResponse
 				})
 
-				console.log(simpledb)
+				console.log(cache)
 
 				// returns a response status and the data
 				return [jikanResponse.status,jikanResponse.data]
