@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer-core');
+const fs = require('fs')
+const path = require('path')
   
 
 module.exports = 
@@ -8,6 +10,8 @@ module.exports =
 
       const siteUrl = "http://localhost:4242/shelf/"
       const screenshotUrl = siteUrl + username
+
+      /*const filePath = path.join(__dirname,"/public/temp/screenshot.png")*/
 
       const browser = await puppeteer.launch(
       {
@@ -45,31 +49,37 @@ module.exports =
                return new Error("Page not found!")
             }
             // Getting site max height and width
-            /*const bodyWidth = await page.evaluate(() => document.body.scrollWidth);*/
+            const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
             const bodyHeight = await page.evaluate(() => document.body.scrollHeight);
 
 
             await page.setViewport(
              { 
-                width: 3840, 
-                height: 1080 
+                width: 1920, 
+                height: 1080
              });
 
 
             console.log("Saving screenshot...")
             
             const screenshot = await page.screenshot(
-            /*{
-               fullPage: true
-            }*/);
+            {
+               /*path: 'screenshot.png',*/
+               fullPage: false
+            })
 
             console.log("Screenshot saved!")
 
             console.log("Closing browser")
 
-            await browser.close();
+            console.log()
+
+            await browser.close()
 
             return screenshot
+
+
+
       }
       catch(e)
       {
@@ -79,5 +89,13 @@ module.exports =
             return e
       }
 
+   },
+
+   removeScreenshot: function removeScreenshot()
+   {
+      fs.unlink('scr.png', (err) => 
+      {
+          console.log("File is deleted");
+      })
    }
 }

@@ -64,29 +64,62 @@ app.post('/shelf',async (req,res)=>
 		res.redirect(`shelf/${userName}`)
 	}
 	else
-	{
+	{	
+		// redirect into get so something heppens!
+
+		res.redirect(`/screenshot/${userName}`)
 		
-		try
+		/*try
 		{	
 			console.log("getting the screenshot")
 			const scr = await screenshotLib.getScreenshot(userName)
 			console.log("sending the pic")
-			res.set('Content-Type', 'image/png')
-		
-			res.send(scr)
+			res.set({
+				'content-type':'image/png'
+			})
+			res.sendFile(path.join(__dirname,"/screenshot.png"))
+
 		}
 		catch(e)
 		{
-			console.log("Coudn't retrive screenshot")
+			console.log(e.message)
 
 			res.redirect('/')
 		}
-		
+		*/
 
 
 	}
 
 	
+})
+
+app.get('/screenshot/:username', async (req,res)=>
+{
+	console.log("Hello there!")
+
+	const userName = req.params.username
+
+	try
+	{	
+		console.log("getting the screenshot")
+		const scr = await screenshotLib.getScreenshot(userName)
+		console.log("sending the pic")
+		res.set({
+			'content-type':'image/png'
+		})
+		/*res.sendFile(path.join(__dirname,"/screenshot.png"))*/
+
+		res.send(scr)
+
+	}
+	catch(e)
+	{
+		console.log(e.message)
+
+		res.redirect('/')
+	}
+		
 })
 
 
