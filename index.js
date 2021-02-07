@@ -21,7 +21,7 @@ app.get('/',(req,res)=>
 app.post('/shelf', async (req,res)=>
 {
 
-	const userName = req.body.userName
+	const userName = (req.body.userName).replace(/\s/g, '').toLowerCase();
 
 	try
 	{
@@ -31,7 +31,10 @@ app.post('/shelf', async (req,res)=>
 		if (userAnimeData[0] === 200) 
 		{
 			console.log("Rendering the page")
-			res.render("shelf",{ animeData : userAnimeData[1].anime})
+			res.render("shelf",{ 
+				animeData : userAnimeData[1].anime,
+				userInfo: userName
+			})
 		}
 		else
 		{

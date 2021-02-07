@@ -26,10 +26,15 @@
                 <a class="btn btn-primary" href="#">GitHub</a>
               </div>
             </nav>
+
+
                    
 
             <div class="container-fluid h-100">
-                <div class="container d-flex py-5 align-content-stretch flex-wrap justify-content-between">
+
+                <h1 class="display-1 text-white text-center"> <%= userInfo %> </h1>
+
+                <div class="container-fluid d-flex py-5 align-content-stretch flex-wrap justify-content-between">
 
                     <% animeData.forEach(anime =>{ %>
                         <img src=<%= anime.image_url %> class="m-4 rounded img-fluid" width="250" height="300">

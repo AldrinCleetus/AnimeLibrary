@@ -4,27 +4,68 @@ const axios = require('axios');
 const jikanApi = "http://api.jikan.moe/v3/user/"
 const animeParam = "/animelist/all"
 
+let simpledb = []
+
 module.exports = 
 {
 	getAnimeData: async function getAnimeData(username)
 	{
 		console.log("Requesting from "+ jikanApi+username+animeParam)
 
-		try
-		{
-			const jikanResponse = await axios.get(jikanApi+username+animeParam)
-			console.log("Data retrived!")
-			console.log(jikanResponse.status)
+		console.log(simpledb)
 
-			return [jikanResponse.status,jikanResponse.data]
+		let found = 
+		{
+			status: false,
+			dataID: 0
 		}
-		catch(e)
+
+		// Check if the data is already cached
+		simpledb.every( (cachedData,index) =>
 		{
-			console.log(e.message)
+			if (cachedData.user === username) 
+			{
+				console.log("Data cached! Sending cached data!")
+				found.status = true
+				found.dataID = index
+				return false
+			}
+		})
 
-			return [e.response.status,null]
-			
+		if (found.status)
+		{
+			const cachedDataFound = simpledb[found.dataID].data
 
+			return [cachedDataFound.status,cachedDataFound.data]
+		}
+		else 
+		{
+			try
+			{
+
+				const jikanResponse = await axios.get(jikanApi+username+animeParam)
+				console.log("Data retrived!")
+				console.log(jikanResponse.status)
+
+				simpledb.push({
+					user: username,
+					data: jikanResponse
+				})
+
+				console.log(simpledb)
+
+				// returns a response status and the data
+				return [jikanResponse.status,jikanResponse.data]
+			}
+			catch(e)
+			{
+				console.log(e.message)
+
+				// returns the err response status
+				return [e.response.status,null]
+				
+
+			}
 		}
 	}
 }
