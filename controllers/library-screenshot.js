@@ -39,7 +39,7 @@ module.exports =
             await page.goto(screenshotUrl,
                {
                   waitUntil: 'networkidle0',
-                  timeout: 60000
+                  timeout: 0
                });
 
  
@@ -52,12 +52,27 @@ module.exports =
             const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
             const bodyHeight = await page.evaluate(() => document.body.scrollHeight);
 
-
             await page.setViewport(
              { 
-                width: 1920, 
-                height: 1080
-             });
+                width: 3840, 
+                height: bodyHeight
+             })
+
+            // Get the anime div
+            const animeCover = await page.$('#main')
+
+            //Its bounding box
+            const box = await animeCover.boundingBox()
+
+            //Its values
+            const x = box['x']
+            const y = box['y']
+            const boxWidth = box['width']
+            const boxHeight = box['height']
+
+
+
+            
 
 
             console.log("Saving screenshot...")
@@ -65,7 +80,12 @@ module.exports =
             const screenshot = await page.screenshot(
             {
                /*path: 'screenshot.png',*/
-               fullPage: false
+               clip:{
+                  'x':x,
+                  'y':y,
+                  'width': boxWidth,
+                  'height': boxHeight
+               }
             })
 
             console.log("Screenshot saved!")

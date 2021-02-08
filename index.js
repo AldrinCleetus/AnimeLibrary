@@ -69,26 +69,6 @@ app.post('/shelf',async (req,res)=>
 
 		res.redirect(`/screenshot/${userName}`)
 		
-		/*try
-		{	
-			console.log("getting the screenshot")
-			const scr = await screenshotLib.getScreenshot(userName)
-			console.log("sending the pic")
-			res.set({
-				'content-type':'image/png'
-			})
-			res.sendFile(path.join(__dirname,"/screenshot.png"))
-
-		}
-		catch(e)
-		{
-			console.log(e.message)
-
-			res.redirect('/')
-		}
-		*/
-
-
 	}
 
 	

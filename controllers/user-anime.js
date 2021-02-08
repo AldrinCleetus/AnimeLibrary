@@ -52,6 +52,8 @@ module.exports =
 				console.log("Data retrived!")
 				console.log(jikanResponse.status)
 
+				console.log(Object.keys(jikanResponse.data.anime).length)
+
 				cache.push({
 					user: username,
 					data: jikanResponse
