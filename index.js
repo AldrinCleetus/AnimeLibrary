@@ -11,8 +11,12 @@ const app = express()
 
 app.set('view engine','ejs')
 
+app.use(express.static(__dirname + '/public'))
+
 // Allows express to access the form data
 app.use(express.urlencoded({extended: false}))
+
+
 
 // Home directory
 app.get('/',(req,res)=>
@@ -117,7 +121,7 @@ app.get('/shelf/:userid', async (req,res)=>
 			if (userAnimeData[0] === 200) 
 			{
 				console.log("Anime recieved here: " + Object.keys(userAnimeData[1].anime).length)
-				
+
 				console.log("Rendering the page")
 				res.render("shelf",{ 
 					animeData : userAnimeData[1].anime,

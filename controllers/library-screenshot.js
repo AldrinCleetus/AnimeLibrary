@@ -58,6 +58,26 @@ module.exports =
                 height: bodyHeight
              })
 
+            
+            await page.evaluate(async () => {
+              // Scroll down to bottom of page to activate lazy loading images
+              document.body.scrollIntoView(false);
+
+              // Wait for all remaining lazy loading images to load
+              await Promise.all(Array.from(document.getElementsByTagName('img'), image => {
+                if (image.complete) {
+                  return;
+                }
+
+                return new Promise((resolve, reject) => {
+                  image.addEventListener('load', resolve);
+                  image.addEventListener('error', reject);
+                });
+              }));
+            });
+
+
+
             // Get the anime div
             const animeCover = await page.$('#main')
 
@@ -85,7 +105,9 @@ module.exports =
                   'y':y,
                   'width': boxWidth,
                   'height': boxHeight
-               }
+               },
+               type: 'jpeg',
+               quality: 100
             })
 
             console.log("Screenshot saved!")

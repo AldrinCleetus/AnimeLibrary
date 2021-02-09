@@ -4,6 +4,8 @@ const axios = require('axios');
 const jikanApi = "http://api.jikan.moe/v3/user/"
 const animeParam = "/animelist/all"
 
+// change all to whatever the user wants. all? completed? watching?
+
 let pageCount = 1
 
 // Temporary Cache
@@ -60,10 +62,7 @@ async function getAnimePerPage(username,pageNo)
 			console.log("Adding the new anime to the list and returning it")
 			jikanResponse.data.anime = jikanResponse.data.anime.concat(getNextAnimeList[1].anime)
 
-			cache.push({
-				user: username,
-				data: jikanResponse
-			})
+			
 
 			/*console.log(cache)*/
 
@@ -77,6 +76,11 @@ async function getAnimePerPage(username,pageNo)
 		console.log("Reseting the page count")
 		pageCount = 1
 
+		cache.push({
+				user: username,
+				data: jikanResponse
+		})
+
 		return [jikanResponse.status,jikanResponse.data]
 		
 	
@@ -88,7 +92,7 @@ async function getAnimePerPage(username,pageNo)
 		console.log(e)
 
 		// returns the err response status
-		return [e.response.status,null]
+		return [404,null]
 		
 
 	}
