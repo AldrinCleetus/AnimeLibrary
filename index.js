@@ -111,9 +111,13 @@ app.get('/shelf/:userid', async (req,res)=>
 		{
 			const userAnimeData = await userAnime.getAnimeData(userName)
 			console.log("Information Recieved!")
+
+			
 			
 			if (userAnimeData[0] === 200) 
 			{
+				console.log("Anime recieved here: " + Object.keys(userAnimeData[1].anime).length)
+				
 				console.log("Rendering the page")
 				res.render("shelf",{ 
 					animeData : userAnimeData[1].anime,
@@ -129,7 +133,7 @@ app.get('/shelf/:userid', async (req,res)=>
 		}
 		catch(e)
 		{
-			console.log(e.message)
+			console.log(e)
 			res.redirect("/")
 		}
 	
