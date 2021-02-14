@@ -109,7 +109,7 @@ app.get('/screenshot/:username', async (req,res)=>
 
 app.get('/shelf/:userid', async (req,res)=>
 {
-	const userName = req.params.userid
+	const userName = req.params.userid.replace(/\s/g, '').toLowerCase();
 
 		try
 		{
