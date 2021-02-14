@@ -45,7 +45,11 @@
                 <div class="container-fluid d-flex py-5 align-content-stretch flex-wrap justify-content-between">
 
                     <% animeData.forEach(anime =>{ %>
-                        <img src=<%= anime.image_url %> class="m-4 rounded img-fluid" width="250" height="300">
+                    
+                           <a href=<%= anime.url %> class="my-3 mx-2 p-0">
+                                <img src=<%= anime.image_url %> class="m-0 p-0 rounded h-100 img-fluid">
+                            </a>
+
                     <% })%>
                 </div>
             </div>
