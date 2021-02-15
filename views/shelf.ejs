@@ -38,9 +38,97 @@
 
                    
 
-            <div id="main" class="container-fluid h-100">
+            <div id="main" class=" text-white container-fluid h-100">
 
-                <h1 class="display-1 text-white text-center"> <%= userInfo %> </h1>
+                <!-- <h1 class="display-1 text-white text-center"> <%= userInfo %> </h1> -->
+
+                <div class="mx-2 p-2 d-flex justify-content-center align-items-center bg-dark rounded">
+
+
+                  
+                  <div class=" text-center mx-4 text-centerflex-column p-2 order-3">
+
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.82E6lG1IrUZiExt52q_EpgHaHa%26pid%3DApi%26h%3D160&f=1" 
+                    class=" img-fluid rounded-circle">
+
+                  
+                    <div class="m-1">
+                      <h3 class="h3"><%= userInfo %></h3>
+                    </div>
+
+                  </div>
+
+
+                  <!-- Except phones it displays on all -->
+
+                  <div class="card text-white bg-primary mx-2 d-none d-sm-block order-1" style="width: 18rem;">
+                    <div class="card-header">
+                      <h2 class="title">Watching</h2>
+                    </div>
+                    <div class="card-body text-center ">
+                      <h2 class="card-title w-100 h1">35</h2>
+                    </div>
+                  </div>
+
+                  <div class="card text-white bg-success mx-2 d-none d-sm-block order-2" style="width: 18rem;">
+                    <div class="card-header">
+                      <h2 class="title">Completed</h2>
+                    </div>
+                    <div class="card-body text-center ">
+                      <h2 class="card-title w-100 h1">234</h2>
+                    </div>
+                  </div>
+
+                  <div class="card text-white bg-warning mx-2 d-none d-sm-block order-4" style="width: 18rem;">
+                    <div class="card-header">
+                      <h2 class="title">Plan to Watch</h2>
+                    </div>
+                    <div class="card-body text-center ">
+                      <h2 class="card-title w-100 h1">123</h2>
+                    </div>
+                  </div>
+
+                  <div class="card text-white bg-danger mx-2 d-none d-sm-block order-5" style="width: 18rem;">
+                    <div class="card-header">
+                      <h2 class="title">Dropped</h2>
+                    </div>
+                    <div class="card-body text-center ">
+                      <h2 class="card-title w-100 h1">123</h2>
+                    </div>
+                  </div>
+
+                  <!-- Progress Bar Design -->
+
+                  <!-- <div class="w-100 align-self-stretch d-flex flex-column justify-content-between">
+
+                    <h6 class="text-white">Total Anime: 252</h6>
+                    <div class="progress w-100 m-1 bg-dark" style="height: 40px;">
+                      <div class="progress-bar bg-info progress-bar-striped" 
+                      role="progressbar" 
+                      style="width: 6%"></div>
+                    </div>
+
+                     <h6 class="text-white font-weight-bold text-nowrap">Total Anime: 252</h6>
+                    <div class="progress w-100 m-1 bg-dark" style="height: 40px;">
+                      <div class="progress-bar bg-success progress-bar-striped" 
+                      role="progressbar" 
+                      style="width: 34%"></div>
+                    </div>
+
+                    <h6 class="text-white font-weight-bold text-nowrap">Total Anime: 252</h6>
+
+                    <div class="progress w-100 m-1 bg-dark" style="height: 40px;">
+                      <div class="progress-bar bg-warning progress-bar-striped" 
+                      role="progressbar" 
+                      style="width: 60%"></div>
+                    </div> -->
+
+
+                  </div>
+
+                  
+
+                </div>
 
                 <div class="container-fluid d-flex py-5 align-content-stretch flex-wrap justify-content-between">
 
