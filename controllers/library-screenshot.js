@@ -59,7 +59,7 @@ module.exports =
              })
 
             
-            await page.evaluate(async () => {
+            /*await page.evaluate(async () => {
               // Scroll down to bottom of page to activate lazy loading images
               document.body.scrollIntoView(false);
 
@@ -74,7 +74,7 @@ module.exports =
                   image.addEventListener('error', reject);
                 });
               }));
-            });
+            });*/
 
 
 
