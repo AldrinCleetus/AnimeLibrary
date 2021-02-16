@@ -112,35 +112,37 @@ app.get('/shelf/:userid', async (req,res)=>
 {
 	const userName = req.params.userid.replace(/\s/g, '').toLowerCase();
 
-		try
+	try
+	{
+		const userAnimeData = await userAnime.getAnimeData(userName)
+		console.log("Information Recieved!")
+
+		
+		
+		if (userAnimeData[0] === 200) 
 		{
-			const userAnimeData = await userAnime.getAnimeData(userName)
-			console.log("Information Recieved!")
+			console.log("Anime recieved here: " + Object.keys(userAnimeData[1].anime).length)
 
-			
-			
-			if (userAnimeData[0] === 200) 
-			{
-				console.log("Anime recieved here: " + Object.keys(userAnimeData[1].anime).length)
-
-				console.log("Rendering the page")
-				res.render("shelf",{ 
-					animeData : userAnimeData[1].anime,
-					userInfo: userName
-				})
-			}
-			else
-			{
-				console.log("Sorry something happened!")
-				res.redirect('/')
-			}
-
+			console.log("Rendering the page")
+			res.render("shelf",{ 
+				animeData : userAnimeData[1].anime,
+				userInfo: userName
+			})
 		}
-		catch(e)
+		else
 		{
-			console.log(e)
-			res.redirect("/")
+			console.log("index: Sorry I didn't recieve any Anime")
+			res.redirect('/')
 		}
+
+	}
+	catch(e)
+	{
+
+		console.log(e)
+		console.log("says index.js")
+		res.redirect("/")
+	}
 	
 })
 
