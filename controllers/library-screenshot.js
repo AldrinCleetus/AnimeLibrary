@@ -131,13 +131,5 @@ module.exports =
             return e
       }
 
-   },
-
-   removeScreenshot: function removeScreenshot()
-   {
-      fs.unlink('scr.png', (err) => 
-      {
-          console.log("File is deleted");
-      })
    }
 }

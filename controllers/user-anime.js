@@ -9,7 +9,7 @@ const animeParam = "/animelist/completed"
 let pageCount = 1
 
 // Temporary Cache
-let cache = []
+/*let cache = []*/
 
 
 
@@ -32,7 +32,7 @@ async function getAnimePerPage(username,pageNo)
 
 
 		
-		// Check if there is more than 300 anime on the current page
+		// Check if there is 300 anime on the current page
 		if (currentAnimeLength === 300) 
 		{
 
@@ -76,10 +76,10 @@ async function getAnimePerPage(username,pageNo)
 		console.log("Reseting the page count")
 		pageCount = 1
 
-		cache.push({
+		/*cache.push({
 				user: username,
 				data: jikanResponse
-		})
+		})*/
 
 		return [jikanResponse.status,jikanResponse.data]
 		
@@ -89,7 +89,9 @@ async function getAnimePerPage(username,pageNo)
 	}
 	catch(e)
 	{
+
 		console.log(e)
+		console.log("says user-anime.js")
 
 		// returns the err response status
 		return [404,null]
@@ -109,7 +111,15 @@ module.exports =
 
 		console.log("Requesting from "+ jikanApi+username+animeParam)
 
-		console.log(cache)
+		const returnThis = await getAnimePerPage(username,pageCount)
+
+		return returnThis
+
+		/*return getAnimePerPage(username,pageCount)*/
+
+		/*console.log(cache)
+
+
 
 
 		let found = 
@@ -132,9 +142,9 @@ module.exports =
 
 				return false
 			}
-		})
+		})*/
 
-		if (found.status)
+		/*if (found.status)
 		{
 			const cachedDataFound = cache[found.dataID].data
 
@@ -146,7 +156,7 @@ module.exports =
 			
 			return getAnimePerPage(username,pageCount)
 
-			/*try
+			try
 			{
 
 				const jikanResponse = await axios.get(jikanApi+username+animeParam)
@@ -173,8 +183,8 @@ module.exports =
 				return [e.response.status,null]
 				
 
-			}*/
-		}
+			}
+		}*/
 	}
 }
 
