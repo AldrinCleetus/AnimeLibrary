@@ -36,11 +36,15 @@ module.exports =
 
       try
       {
+            page.setDefaultTimeout(0)
+
             await page.goto(screenshotUrl,
                {
                   waitUntil: 'networkidle0',
                   timeout: 0
                });
+
+            console.log("Page Loaded! yay")
 
  
             if ( page.url() !== screenshotUrl) 
@@ -59,7 +63,7 @@ module.exports =
              })
 
             
-            /*await page.evaluate(async () => {
+            await page.evaluate(async () => {
               // Scroll down to bottom of page to activate lazy loading images
               document.body.scrollIntoView(false);
 
@@ -74,8 +78,11 @@ module.exports =
                   image.addEventListener('error', reject);
                 });
               }));
-            });*/
+            });
 
+            console.log("Wow")
+
+        
 
 
             // Get the anime div

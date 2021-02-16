@@ -1,10 +1,10 @@
 require('dotenv').config()
 const express = require('express')
 const userAnime = require('./controllers/user-anime')
+const userProfile = require('./controllers/user-info')
 const screenshotLib = require('./controllers/library-screenshot')
 const path = require('path')
 
-/* Testing */
 
 const app = express()
 
@@ -115,9 +115,11 @@ app.get('/shelf/:userid', async (req,res)=>
 	try
 	{
 		const userAnimeData = await userAnime.getAnimeData(userName)
-		console.log("Information Recieved!")
+		console.log("AnimeDat Recieved!")
 
-		
+		const userInfo = await userProfile.getUserData(userName)
+
+	
 		
 		if (userAnimeData[0] === 200) 
 		{
@@ -126,7 +128,7 @@ app.get('/shelf/:userid', async (req,res)=>
 			console.log("Rendering the page")
 			res.render("shelf",{ 
 				animeData : userAnimeData[1].anime,
-				userInfo: userName
+				userInfo: userInfo
 			})
 		}
 		else
