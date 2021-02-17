@@ -25,6 +25,14 @@ async function getAnimePerPage(username,pageNo)
 		console.log("Current anime on page " +pageCount+" is "+currentAnimeLength)
 
 
+		// Anime Limiter!
+		if (pageCount === 2)
+		{
+			// returns a response status and the data
+			return [jikanResponse.status,jikanResponse.data]
+		}
+
+
 		
 		// Check if there is 300 anime on the current page
 		if (currentAnimeLength === 300) 
