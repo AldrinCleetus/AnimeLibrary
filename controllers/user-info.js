@@ -11,6 +11,7 @@ module.exports =
 
 		try
 		{
+
 			const userDataUrl = jikanApi + username
 
 			console.log("Requesting from "+ userDataUrl)
