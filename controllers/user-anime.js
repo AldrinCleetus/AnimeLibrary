@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 
-const jikanApi = "http://api.jikan.moe/v3/user/"
+const jikanApi = "https://api.jikan.moe/v3/user/"
 const animeParam = "/animelist/completed"
 
 // Change all to whatever the user wants. all? completed? watching? Future update?
