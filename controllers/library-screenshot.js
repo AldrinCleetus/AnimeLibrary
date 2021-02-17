@@ -8,15 +8,12 @@ module.exports =
    getScreenshot : async function getScreenshot(username)
    {
 
-      /*const siteUrl = "http://localhost:4242/shelf/"*/
-      const siteUrl = "https://animelibrary.herokuapp.com/shelf/"
+      const siteUrl = "http://localhost:4242/shelf/"
+      /*const siteUrl = "https://animelibrary.herokuapp.com/shelf/"*/
       const screenshotUrl = siteUrl + username
-
-      /*const filePath = path.join(__dirname,"/public/temp/screenshot.png")*/
 
       const browser = await puppeteer.launch(
       {
-         /*executablePath: '/usr/bin/chromium-browser',*/
          headless: true,
          args: [
                 '--no-sandbox',
@@ -27,16 +24,6 @@ module.exports =
       const page = await browser.newPage();
 
       console.log("Going to screenshotUrl: ",screenshotUrl)
-
-      
-
-      /*page.setViewport(
-      {
-         width: 1280,
-         height: 720,
-         deviceScaleFactor:2
-      })*/
-   
 
 
       try
@@ -55,7 +42,7 @@ module.exports =
             if ( page.url() !== screenshotUrl) 
             { 
                console.log(screenshotUrl + " its not the same! " + page.url())
-               return new Error("Page not found!")
+               throw new Error("Sorry Couldn't load page")
             }
             // Getting site max height and width
             const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
@@ -85,26 +72,19 @@ module.exports =
               }));
             });
 
-            console.log("Wow")
-
-        
-
 
             // Get the anime div
             const animeCover = await page.$('#main')
 
-            //Its bounding box
+            // Its bounding box
             const box = await animeCover.boundingBox()
 
-            //Its values
+            // Its values
             const x = box['x']
             const y = box['y']
             const boxWidth = box['width']
             const boxHeight = box['height']
 
-
-
-            
 
 
             console.log("Saving screenshot...")
@@ -126,21 +106,18 @@ module.exports =
 
             console.log("Closing browser")
 
-            console.log()
-
             await browser.close()
 
             return screenshot
 
-
-
       }
       catch(e)
       {
-            console.log("Error at libray-screenshot")
-
+            
             console.log(e.message)
-            return e
+            console.log("says libray-screenshot")
+
+            throw e
       }
 
    }

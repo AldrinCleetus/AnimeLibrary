@@ -23,44 +23,10 @@ app.get('/',(req,res)=>
 	res.render("index")
 })
 
-/*app.post('/shelf', async (req,res)=>
-{
-
-	const userName = (req.body.userName).replace(/\s/g, '').toLowerCase();
-
-	try
-	{
-		const userAnimeData = await userAnime.getAnimeData(userName)
-		console.log("Information Recieved!")
-		
-		if (userAnimeData[0] === 200) 
-		{
-			console.log("Rendering the page")
-			res.render("shelf",{ 
-				animeData : userAnimeData[1].anime,
-				userInfo: userName
-			})
-		}
-		else
-		{
-			console.log("Sorry something happened!")
-			res.redirect('/')
-		}
-
-	}
-	catch(e)
-	{
-		console.log(e.message)
-		res.redirect("/")
-	}
-	
-})
-
-*/
 
 app.post('/shelf',async (req,res)=>
 {
-	const userName = (req.body.userName).replace(/\s/g, '').toLowerCase();
+	const userName = (req.body.userName).replace(/[^\w-]+/g, '').toLowerCase();
 
 
 	if (req.body.mainButton === "view") 
@@ -69,8 +35,7 @@ app.post('/shelf',async (req,res)=>
 	}
 	else
 	{	
-		// redirect into get so something heppens!
-
+		// It must be screenshot button so: 
 		res.redirect(`/screenshot/${userName}`)
 		
 	}
@@ -92,7 +57,7 @@ app.get('/screenshot/:username', async (req,res)=>
 		res.set({
 			'content-type':'image/png'
 		})
-		/*res.sendFile(path.join(__dirname,"/screenshot.png"))*/
+		
 
 		res.send(scr)
 
@@ -100,6 +65,7 @@ app.get('/screenshot/:username', async (req,res)=>
 	catch(e)
 	{
 		console.log(e.message)
+		console.log("says index.js")
 
 		res.redirect('/')
 	}
@@ -109,7 +75,7 @@ app.get('/screenshot/:username', async (req,res)=>
 
 app.get('/shelf/:userid', async (req,res)=>
 {
-	const userName = req.params.userid.replace(/\s/g, '').toLowerCase();
+	const userName = req.params.userid.replace(/[^\w-]+/g, '').toLowerCase();
 
 	try
 	{
@@ -146,22 +112,22 @@ app.get('/shelf/:userid', async (req,res)=>
 	catch(e)
 	{
 
-		console.log(e)
+	
+		if (e.response.status === 404 || e.response.status === 400) 
+		{
+			res.redirect("/")
+		}
+		else
+		{
+			res.redirect("/")
+		}
+
+		console.log(e.message)
 		console.log("says index.js")
-		res.redirect("/")
+		
 	}
 	
 })
-
-
-
-/*app.get('/screenshot', async (req,res)=>
-{
-
-	const scr = await screenshotLib.getScreenshot(req,res,'https://localhost:4242/shelf')
-
-	res.redirect("/")
-})*/
 
 
 

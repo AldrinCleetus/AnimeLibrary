@@ -24,11 +24,11 @@ module.exports =
 		catch(e)
 		{
 
-			console.log(e)
+			console.log(e.message)
 			console.log("says user-info.js")
 
 			// returns the err response status
-			return null
+			throw e
 			
 		}
 

@@ -4,14 +4,7 @@ const axios = require('axios');
 const jikanApi = "http://api.jikan.moe/v3/user/"
 const animeParam = "/animelist/completed"
 
-// change all to whatever the user wants. all? completed? watching?
-
-let pageCount = 1
-
-// Temporary Cache
-/*let cache = []*/
-
-
+// Change all to whatever the user wants. all? completed? watching? Future update?
 
 
 
@@ -19,11 +12,7 @@ async function getAnimePerPage(username,pageNo)
 {
 	try
 	{
-
-		if (!username) 
-		{
-			return new Error("No username!")
-		}
+		let pageCount = pageNo
 
 		const userAnimeUrl = jikanApi + username + animeParam + '/' + pageNo
 
@@ -67,9 +56,6 @@ async function getAnimePerPage(username,pageNo)
 			console.log("Adding the new anime to the list and returning it")
 			jikanResponse.data.anime = jikanResponse.data.anime.concat(getNextAnimeList[1].anime)
 
-			
-
-			/*console.log(cache)*/
 
 			// returns a response status and the data
 			return [jikanResponse.status,jikanResponse.data]
@@ -81,10 +67,6 @@ async function getAnimePerPage(username,pageNo)
 		console.log("Reseting the page count")
 		pageCount = 1
 
-		/*cache.push({
-				user: username,
-				data: jikanResponse
-		})*/
 
 		return [jikanResponse.status,jikanResponse.data]
 		
@@ -95,11 +77,11 @@ async function getAnimePerPage(username,pageNo)
 	catch(e)
 	{
 
-		console.log(e)
+		console.log(e.message)
 		console.log("says user-anime.js")
 
 		// returns the err response status
-		return [404,null]
+		throw e
 		
 
 	}
@@ -113,83 +95,21 @@ module.exports =
 	getAnimeData: async function getAnimeData(username)
 	{
 
+		let pageCount = 1
 
 		console.log("Requesting from "+ jikanApi+username+animeParam)
 
-		const returnThis = await getAnimePerPage(username,pageCount)
-
-		return returnThis
-
-		/*return getAnimePerPage(username,pageCount)*/
-
-		/*console.log(cache)
-
-
-
-
-		let found = 
+		try
 		{
-			status: false,
-			dataID: 0
+			const allAnime = await getAnimePerPage(username,pageCount)
+
+			return allAnime
 		}
-
-		// Check if the data is already cached
-		cache.every( (cachedData,index) =>
+		catch(e)
 		{
-			if (cachedData.user === username.toString()) 
-			{
-				console.log("Data cached! Sending cached data!")
-
-				found.status = true
-				found.dataID = index
-
-				console.log(found)
-
-				return false
-			}
-		})*/
-
-		/*if (found.status)
-		{
-			const cachedDataFound = cache[found.dataID].data
-
-			return [cachedDataFound.status,cachedDataFound.data]
+			throw e
 		}
-		else 
-		{
-
-			
-			return getAnimePerPage(username,pageCount)
-
-			try
-			{
-
-				const jikanResponse = await axios.get(jikanApi+username+animeParam)
-				console.log("Data retrived!")
-				console.log(jikanResponse.status)
-
-				console.log(Object.keys(jikanResponse.data.anime).length)
-
-				cache.push({
-					user: username,
-					data: jikanResponse
-				})
-
-				console.log(cache)
-
-				// returns a response status and the data
-				return [jikanResponse.status,jikanResponse.data]
-			}
-			catch(e)
-			{
-				console.log(e.message + " Hmmmm")
-
-				// returns the err response status
-				return [e.response.status,null]
-				
-
-			}
-		}*/
+		
 	}
 }
 
