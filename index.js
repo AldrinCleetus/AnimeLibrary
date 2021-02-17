@@ -113,12 +113,18 @@ app.get('/shelf/:userid', async (req,res)=>
 
 	try
 	{
+		console.log(" ")
+
+		console.log("Waiting for Anime Data")
 		const userAnimeData = await userAnime.getAnimeData(userName)
-		console.log("AnimeDat Recieved!")
+		console.log("AnimeData Recieved!")
 
-		const userInfo = await userProfile.getUserData(userName)
+		console.log(" ")
 
-	
+		console.log("Waiting for User Data")
+		const userData = await userProfile.getUserData(userName)
+		console.log("UserData Recieved!")
+
 		
 		if (userAnimeData[0] === 200) 
 		{
@@ -127,7 +133,7 @@ app.get('/shelf/:userid', async (req,res)=>
 			console.log("Rendering the page")
 			res.render("shelf",{ 
 				animeData : userAnimeData[1].anime,
-				userInfo: userInfo
+				userInfo: userData
 			})
 		}
 		else
@@ -159,7 +165,7 @@ app.get('/shelf/:userid', async (req,res)=>
 
 
 
-console.log(`Listening on localhost:${process.env.PORT}`)
-app.listen(process.env.PORT || 4200)
+console.log(`Listening on localhost: 4242`)
+app.listen(process.env.PORT || 4242)
 
 

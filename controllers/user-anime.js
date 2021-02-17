@@ -20,6 +20,11 @@ async function getAnimePerPage(username,pageNo)
 	try
 	{
 
+		if (!username) 
+		{
+			return new Error("No username!")
+		}
+
 		const userAnimeUrl = jikanApi + username + animeParam + '/' + pageNo
 
 		const jikanResponse = await axios.get(userAnimeUrl)

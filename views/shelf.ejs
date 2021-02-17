@@ -48,8 +48,9 @@
                   
                   <div class=" text-center mx-4 text-centerflex-column p-2 order-3">
 
-                    <img src=<%= userInfo.image_url %> 
-                    class=" img-fluid rounded">
+                    <% if(userInfo.image_url){ %>
+                            <img src="<%= userInfo.image_url %>" class=" img-fluid rounded">
+                    <% } %> 
 
                   
                     <div class="m-2">
@@ -132,8 +133,8 @@
 
                     <% animeData.forEach(anime =>{ %>
                     
-                           <a href=<%= anime.url %> class="my-3 mx-2 p-0">
-                                <img src=<%= anime.image_url %> class="m-0 p-0 rounded h-100 img-fluid">
+                           <a href="<%= anime.url %>" class="my-3 mx-2 p-0">
+                                <img src="<%= anime.image_url %>" class="m-0 p-0 rounded h-100 img-fluid">
                             </a>
 
                     <% })%>
