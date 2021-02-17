@@ -8,8 +8,8 @@ module.exports =
    getScreenshot : async function getScreenshot(username)
    {
 
-      const siteUrl = "http://localhost:4242/shelf/"
-      /*const siteUrl = "https://animelibrary.herokuapp.com/shelf/"*/
+      /*const siteUrl = "http://localhost:4242/shelf/"*/
+      const siteUrl = "https://animelibrary.herokuapp.com/shelf/"
       const screenshotUrl = siteUrl + username
 
       /*const filePath = path.join(__dirname,"/public/temp/screenshot.png")*/
