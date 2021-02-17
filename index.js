@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const userAnime = require('./controllers/user-anime')
 const userProfile = require('./controllers/user-info')
