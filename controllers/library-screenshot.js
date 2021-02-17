@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const fs = require('fs')
 const path = require('path')
   
@@ -8,7 +8,7 @@ module.exports =
    getScreenshot : async function getScreenshot(username)
    {
 
-      const siteUrl = "http://localhost:4242/shelf/"
+      const siteUrl = "http://localhost:4200/shelf/"
       const screenshotUrl = siteUrl + username
 
       /*const filePath = path.join(__dirname,"/public/temp/screenshot.png")*/
