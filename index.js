@@ -115,7 +115,7 @@ app.get('/shelf/:userid', async (req,res)=>
 	
 		if (e.response.status === 404 || e.response.status === 400) 
 		{
-			res.redirect("/")
+			res.render("error")
 		}
 		else
 		{
