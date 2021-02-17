@@ -161,6 +161,6 @@ app.get('/shelf/:userid', async (req,res)=>
 
 
 console.log(`Listening on localhost:${process.env.PORT}`)
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 4200)
 
 
