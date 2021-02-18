@@ -148,41 +148,39 @@ app.get('/error/:code', (req,res)=>
 		"400":
 		{
 			code:"400",
-			message: "Invalid request. Make sure username is correct",
-			emoji:"🙂"
+			message: "Invalid request. Make sure username is correct or account is not private",
+			emoji:"🤖"
 
 		},
 		"429":
 		{
 			code:"429",
 			message: "Too many request. Please try again later",
-			emoji:"🤒"
+			emoji:"😅"
 
 		},
 		"500":
 		{
 			code:"500",
 			message: "JikanAPI Error. Please try again later",
-			emoji:"🤨"
+			emoji:"💀"
 
 		},
 		"503":
 		{
 			code:"503",
 			message: "MyAnimeList could be down. Please try again later",
-			emoji:"🧐"
+			emoji:"👺"
 
 		},
 		"9001":
 		{
 			code:"9001",
-			message: "Its over 9000! Make sure MAL account is not private.",
-			emoji:"🤯"
+			message: "Its over 9000! Bug in Code...lol",
+			emoji:"🐞"
 
 		},
 	}
-
-	console.log(codes)
 
 	if(codes.hasOwnProperty(code))
 	{
