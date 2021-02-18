@@ -112,10 +112,14 @@ app.get('/shelf/:userid', async (req,res)=>
 	catch(e)
 	{
 
-	
-		if (e.response.status === 404 || e.response.status === 400) 
+		if (!e.hasOwnProperty("response")) 
 		{
-			res.render("error")
+			res.redirect(`/error/9001`)
+		}
+	
+		if (e.response.status) 
+		{
+			res.redirect(`/error/${e.response.status}`)
 		}
 		else
 		{
@@ -127,6 +131,69 @@ app.get('/shelf/:userid', async (req,res)=>
 		
 	}
 	
+})
+
+app.get('/error/:code', (req,res)=>
+{
+	const code = req.params.code
+
+	const codes = {
+		"404":
+		{
+			code:"404",
+			message: "User could not be found",
+			emoji:"🙁"
+
+		},
+		"400":
+		{
+			code:"400",
+			message: "Invalid request. Make sure username is correct",
+			emoji:"🙂"
+
+		},
+		"429":
+		{
+			code:"429",
+			message: "Too many request. Please try again later",
+			emoji:"🤒"
+
+		},
+		"500":
+		{
+			code:"500",
+			message: "JikanAPI Error. Please try again later",
+			emoji:"🤨"
+
+		},
+		"503":
+		{
+			code:"503",
+			message: "MyAnimeList could be down. Please try again later",
+			emoji:"🧐"
+
+		},
+		"9001":
+		{
+			code:"9001",
+			message: "Its over 9000! Make sure MAL account is not private.",
+			emoji:"🤯"
+
+		},
+	}
+
+	console.log(codes)
+
+	if(codes.hasOwnProperty(code))
+	{
+		res.render("error",{
+			errorCode: codes[code]
+		})
+	}
+	else
+	{
+		res.redirect('/')
+	}
 })
 
 
