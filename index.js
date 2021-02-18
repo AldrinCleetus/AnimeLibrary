@@ -4,6 +4,8 @@ const userProfile = require('./controllers/user-info')
 const screenshotLib = require('./controllers/library-screenshot')
 const path = require('path')
 
+const errCodes = require('./models/error-codes')
+
 
 const app = express()
 
@@ -67,7 +69,7 @@ app.get('/screenshot/:username', async (req,res)=>
 		console.log(e.message)
 		console.log("says index.js")
 
-		res.redirect('/')
+		res.redirect(`/error/${e.message}`)
 	}
 		
 })
@@ -133,59 +135,16 @@ app.get('/shelf/:userid', async (req,res)=>
 	
 })
 
+// Error handling...hehe
+
 app.get('/error/:code', (req,res)=>
 {
 	const code = req.params.code
 
-	const codes = {
-		"404":
-		{
-			code:"404",
-			message: "User could not be found",
-			emoji:"🙁"
-
-		},
-		"400":
-		{
-			code:"400",
-			message: "Invalid request. Make sure username is correct or account is not private",
-			emoji:"🤖"
-
-		},
-		"429":
-		{
-			code:"429",
-			message: "Too many request. Please try again later",
-			emoji:"😅"
-
-		},
-		"500":
-		{
-			code:"500",
-			message: "JikanAPI Error. Please try again later",
-			emoji:"💀"
-
-		},
-		"503":
-		{
-			code:"503",
-			message: "MyAnimeList could be down. Please try again later",
-			emoji:"👺"
-
-		},
-		"9001":
-		{
-			code:"9001",
-			message: "Its over 9000! Bug in Code...lol",
-			emoji:"🐞"
-
-		},
-	}
-
-	if(codes.hasOwnProperty(code))
+	if(errCodes.hasOwnProperty(code))
 	{
 		res.render("error",{
-			errorCode: codes[code]
+			errorCode: errCodes[code]
 		})
 	}
 	else

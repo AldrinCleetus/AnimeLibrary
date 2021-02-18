@@ -26,7 +26,7 @@ async function getAnimePerPage(username,pageNo)
 
 
 		// Anime Limiter!
-		if (pageCount === 2)
+		if (pageCount === 4)
 		{
 			// returns a response status and the data
 			return [jikanResponse.status,jikanResponse.data]

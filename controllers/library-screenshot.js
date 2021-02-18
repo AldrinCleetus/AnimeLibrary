@@ -42,7 +42,7 @@ module.exports =
             if ( page.url() !== screenshotUrl) 
             { 
                console.log(screenshotUrl + " its not the same! " + page.url())
-               throw new Error("Sorry Couldn't load page")
+               throw new Error(404)
             }
             // Getting site max height and width
             const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
@@ -53,6 +53,8 @@ module.exports =
                 width: 3840, 
                 height: bodyHeight
              })
+
+            
 
             
             await page.evaluate(async () => {
@@ -71,6 +73,17 @@ module.exports =
                 });
               }));
             });
+
+            const animeAmount = await page.evaluate(() => Object.keys(document.getElementsByTagName('img')).length)
+
+            console.log("Amount: "+ animeAmount)
+
+            if (animeAmount > 300)
+            {
+              throw new Error(9001)
+            }
+
+
 
 
             // Get the anime div
