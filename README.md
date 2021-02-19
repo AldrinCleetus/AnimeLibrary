@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> A way to see your completed anime collection and even take screenshots to share them. 
+> A way to see your completed anime collection from MyAnimeList and even take screenshots to share them
 
 ### 🏠 [Homepage](https://animelibrary.herokuapp.com)
 
@@ -26,6 +26,12 @@ npm install
 ```sh
 npm run start
 ```
+
+## Built With
+
+* [Pupeeteer](https://pptr.dev/) - Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the DevTools Protocol
+* [JikanAPI](https://jikan.docs.apiary.io/) - Jikan is an Unofficial MyAnimeList API. It scrapes the website to satisfy the need for an API
+
 
 ## Author
 
