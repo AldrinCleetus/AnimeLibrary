@@ -2,7 +2,8 @@
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/AldrinCleetus/AnimeLibrary/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-no-red.svg" />
+    
   </a>
   <a href="https://github.com/AldrinCleetus/AnimeLibrary/blob/main/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/AldrinCleetus/AnimeLibrary" />
