@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 
-const jikanApi = "https://api.jikan.moe/v3/user/"
+const jikanApi = "https://api.jikan.moe/v4/user/"
 
 
 module.exports = 
